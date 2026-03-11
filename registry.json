@@ -1036,22 +1036,6 @@
       "license": "MIT",
       "tags": [],
       "lastUpdated": "2026-01-27T08:47:06-05:00"
-    },
-    {
-      "id": "modern-clock",
-      "name": "Modern Clock",
-      "version": "1.0.0",
-      "official": false,
-      "author": "FaabFdb",
-      "description": "Modern clock for the noctalia shell, the clock is based on what you usually see in wallpaper engine.",
-      "repository": "https://github.com/FaabFDB/noctalia-plugins",
-      "license": "MIT",
-      "tags": [
-        "Desktop",
-        "Clock",
-        "Time"
-      ],
-      "lastUpdated": ""
     }
   ]
 }
