@@ -5,7 +5,7 @@
   "minNoctaliaVersion": "4.1.2",
   "author": "Screamified",
   "license": "MIT",
-  "repository": "hhttps://github.com/noctalia-dev/noctalia-plugins",
+  "repository": "https://github.com/noctalia-dev/noctalia-plugins",
   "description": "A Modern looking clock desktop widget that will tell you the time. (duh)",
   "tags": ["Desktop", "Fun"],
   "entryPoints": {

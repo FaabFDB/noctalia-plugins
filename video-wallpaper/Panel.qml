@@ -64,7 +64,7 @@ Item {
                 spacing: Style.marginM
 
                 NText {
-                    text: root.pluginApi?.tr("panel.title") || "Video wallpaper manager"
+                    text: root.pluginApi?.tr("panel.title")
                     pointSize: Style.fontSizeXL
                     font.weight: Font.Bold
                     Layout.fillWidth: true
@@ -83,18 +83,18 @@ Item {
 
                 NButton {
                     icon: "wallpaper-selector"
-                    text:        root.pluginApi?.tr("panel.tool_row.folder.text")    || "Folder"
-                    tooltipText: root.pluginApi?.tr("panel.tool_row.folder.tooltip") || "Choose another folder that contains your wallpapers."
+                    text:        root.pluginApi?.tr("panel.tool_row.folder.text")
+                    tooltipText: root.pluginApi?.tr("panel.tool_row.folder.tooltip")
 
                     onClicked: wallpapersFolderPicker.openFilePicker();
                 }
 
                 NButton {
                     icon: "refresh"
-                    text:        root.pluginApi?.tr("panel.tool_row.refresh.text")    || "Refresh"
-                    tooltipText: root.pluginApi?.tr("panel.tool_row.refresh.tooltip") || "Refresh thumbnails, remove old ones and create new ones."
+                    text:        root.pluginApi?.tr("panel.tool_row.refresh.text")
+                    tooltipText: root.pluginApi?.tr("panel.tool_row.refresh.tooltip")
 
-                    onClicked: { 
+                    onClicked: {
                         if(root.pluginApi.mainInstance == null) {
                             Logger.e("video-wallpaper", "Main instance is null, so can't call thumbRegenerate");
                         }
@@ -104,7 +104,7 @@ Item {
 
                 NIconButtonHot {
                     icon: "device-desktop"
-                    tooltipText: root.pluginApi?.tr("panel.tool_row.monitor_specific.tooltip") ||  "Enable / disable the monitor specific setting."
+                    tooltipText: root.pluginApi?.tr("panel.tool_row.monitor_specific.tooltip")
 
                     hot: root.monitorSpecific
 
@@ -119,7 +119,7 @@ Item {
                 }
 
                 NToggle {
-                    label: root.pluginApi?.tr("panel.tool_row.enabled.label") || "Enabled";
+                    label: root.pluginApi?.tr("panel.tool_row.enabled.label")
 
                     Layout.fillWidth: false
 
@@ -164,12 +164,12 @@ Item {
     FolderModel {
         id: folderModel
         folder: root.wallpapersFolder
-        filters: ["*.mp4", "*.avi", "*.mov"]
+        filters: ["*.mp4", "*.avi", "*.mov", "*.webm", "*.gif"]
     }
 
     NFilePicker {
         id: wallpapersFolderPicker
-        title: root.pluginApi?.tr("panel.file_picker.title") || "Choose wallpapers folder"
+        title: root.pluginApi?.tr("panel.file_picker.title")
         initialPath: root.wallpapersFolder
         selectionMode: "folders"
 

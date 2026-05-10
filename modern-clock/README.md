@@ -2,6 +2,8 @@
 
 A simple modern looking clock for your desktop. Usually seen in wallpaper engine for example.
 
+If any custom fonts used cause any issues, @screamified in the noctalia-shell discord. Preferably Plugins channel.
+
 ## Features
 
 - **Desktop Widget**: Draggable clock widget that can be placed anywhere on your desktop and resized.
