@@ -10,7 +10,7 @@
   "tags": ["Desktop", "Fun"],
   "entryPoints": {
     "desktopWidget": "DesktopWidget.qml",
-    "settings": "Settings.qml"
+    "desktopWidgetSettings": "DesktopWidgetSettings.qml"
   },
   "dependencies": {
     "plugins": []
