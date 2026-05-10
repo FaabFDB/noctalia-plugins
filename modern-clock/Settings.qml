@@ -7,55 +7,84 @@ import qs.Widgets
 ColumnLayout {
     id: root
 
-    property var cfg: pluginApi.pluginSettings || ({})
+    // property var cfg: pluginApi.pluginSettings || ({})
     property var defaults: pluginApi?.manifest?.metadata?.defaultSettings || ({})
     property var pluginApi: null
+    property var widgetSettings: null
     
     property string pluginName: "Modern Clock"
-    property bool valueColourChoice: cfg.colourChoice ?? defaults.colourChoice
-    property string valueCustomDateFont: cfg.customDateFont ?? defaults.customDateFont
+    property bool valueShowBackground: false
+
+    property bool valueColourChoice: widgetSettings.colourChoice ?? defaults.colourChoice
+    property string valueCustomDateFont: widgetSettings.customDateFont ?? defaults.customDateFont
 
     // Font
-    property string valueCustomDayFont: cfg.customDayFont ?? defaults.customDayFont
-    property string valueCustomTimeFont: cfg.customTimeFont ?? defaults.customTimeFont
-    property string valueDateColourChoice: cfg.dateColourChoice ?? defaults.dateColourChoice
-    property string valueDateColourPicker: cfg.dateColourPicker ?? defaults.dateColourPicker
-    property real valueDateFontSize: cfg.dateFontSize ?? 1.0
-    property string valueDayColourChoice: cfg.dayColourChoice ?? defaults.dayColourChoice
+    property string valueCustomDayFont: widgetSettings.customDayFont ?? defaults.customDayFont
+    property string valueCustomTimeFont: widgetSettings.customTimeFont ?? defaults.customTimeFont
+    property string valueDateColourChoice: widgetSettings.dateColourChoice ?? defaults.dateColourChoice
+    property string valueDateColourPicker: widgetSettings.dateColourPicker ?? defaults.dateColourPicker
+    property real valueDateFontSize: widgetSettings.dateFontSize ?? 1.0
+    property string valueDayColourChoice: widgetSettings.dayColourChoice ?? defaults.dayColourChoice
 
     // DateTime Colour
-    property string valueDayColourPicker: cfg.dayColourPicker ?? defaults.dayColourPicker
-    property real valueDayFontSize: cfg.dayFontSize ?? 1.0
-    property bool valueShowBackground: false
-    property real valueTextOpacity: cfg.textOpacity ?? defaults.textOpacity
-    property string valueTimeColourChoice: cfg.timeColourChoice ?? defaults.timeColourChoice
-    property string valueTimeColourPicker: cfg.timeColourPicker ?? defaults.timeColourPicker
-    property real valueTimeFontSize: cfg.timeFontSize ?? 1.0
+    property string valueDayColourPicker: widgetSettings.dayColourPicker ?? defaults.dayColourPicker
+    property real valueDayFontSize: widgetSettings.dayFontSize ?? 1.0
+    property real valueTextOpacity: widgetSettings.textOpacity ?? defaults.textOpacity
+    property string valueTimeColourChoice: widgetSettings.timeColourChoice ?? defaults.timeColourChoice
+    property string valueTimeColourPicker: widgetSettings.timeColourPicker ?? defaults.timeColourPicker
+    property real valueTimeFontSize: widgetSettings.timeFontSize ?? 1.0
+
+
+    // function saveSettings() {
+    //     if (!pluginApi) {
+    //         Logger.e(pluginName, "Cannot save settings: pluginApi is null");
+    //         return;
+    //     }
+
+    //     pluginApi.pluginSettings.dayColourPicker = root.valueDayColourPicker.toUpperCase();
+    //     pluginApi.pluginSettings.dateColourPicker = root.valueDateColourPicker.toUpperCase();
+    //     pluginApi.pluginSettings.timeColourPicker = root.valueTimeColourPicker.toUpperCase();
+    //     pluginApi.pluginSettings.dayColourChoice = root.valueDayColourChoice;
+    //     pluginApi.pluginSettings.dateColourChoice = root.valueDateColourChoice;
+    //     pluginApi.pluginSettings.timeColourChoice = root.valueTimeColourChoice;
+    //     pluginApi.pluginSettings.colourChoice = root.valueColourChoice;
+    //     pluginApi.pluginSettings.customDayFont = root.valueCustomDayFont;
+    //     pluginApi.pluginSettings.customDateFont = root.valueCustomDateFont;
+    //     pluginApi.pluginSettings.customTimeFont = root.valueCustomTimeFont;
+    //     pluginApi.pluginSettings.dayFontSize = root.valueDayFontSize;
+    //     pluginApi.pluginSettings.dateFontSize = root.valueDateFontSize;
+    //     pluginApi.pluginSettings.timeFontSize = root.valueTimeFontSize;
+    //     pluginApi.pluginSettings.textOpacity = root.valueTextOpacity;
+
+    //     pluginApi.saveSettings();
+
+    //     Logger.d(pluginName, "Settings saved successfully");
+    // }
 
     function saveSettings() {
-        if (!pluginApi) {
-            Logger.e(pluginName, "Cannot save settings: pluginApi is null");
+        if (!widgetSettings) {
+            Logger.e(pluginName, "Cannot save settings: widgetSettings is null");
             return;
         }
-
-        pluginApi.pluginSettings.dayColourPicker = root.valueDayColourPicker.toUpperCase();
-        pluginApi.pluginSettings.dateColourPicker = root.valueDateColourPicker.toUpperCase();
-        pluginApi.pluginSettings.timeColourPicker = root.valueTimeColourPicker.toUpperCase();
-        pluginApi.pluginSettings.dayColourChoice = root.valueDayColourChoice;
-        pluginApi.pluginSettings.dateColourChoice = root.valueDateColourChoice;
-        pluginApi.pluginSettings.timeColourChoice = root.valueTimeColourChoice;
-        pluginApi.pluginSettings.colourChoice = root.valueColourChoice;
-        pluginApi.pluginSettings.customDayFont = root.valueCustomDayFont;
-        pluginApi.pluginSettings.customDateFont = root.valueCustomDateFont;
-        pluginApi.pluginSettings.customTimeFont = root.valueCustomTimeFont;
-        pluginApi.pluginSettings.dayFontSize = root.valueDayFontSize;
-        pluginApi.pluginSettings.dateFontSize = root.valueDateFontSize;
-        pluginApi.pluginSettings.timeFontSize = root.valueTimeFontSize;
-        pluginApi.pluginSettings.textOpacity = root.valueTextOpacity;
+        
+        widgetSettings.data.dayColourPicker = root.valueDayColourPicker.toUpperCase();
+        widgetSettings.data.dateColourPicker = root.valueDateColourPicker.toUpperCase();
+        widgetSettings.data.timeColourPicker = root.valueTimeColourPicker.toUpperCase();
+        widgetSettings.data.dayColourChoice = root.valueDayColourChoice;
+        widgetSettings.data.dateColourChoice = root.valueDateColourChoice;
+        widgetSettings.data.timeColourChoice = root.valueTimeColourChoice;
+        widgetSettings.data.colourChoice = root.valueColourChoice;
+        widgetSettings.data.customDayFont = root.valueCustomDayFont;
+        widgetSettings.data.customDateFont = root.valueCustomDateFont;
+        widgetSettings.data.customTimeFont = root.valueCustomTimeFont;
+        widgetSettings.data.dayFontSize = root.valueDayFontSize;
+        widgetSettings.data.dateFontSize = root.valueDateFontSize;
+        widgetSettings.data.timeFontSize = root.valueTimeFontSize;
+        widgetSettings.data.textOpacity = root.valueTextOpacity;
 
         pluginApi.saveSettings();
 
-        Logger.d(pluginName, "Settings saved successfully");
+        Logger.d(pluginName, "WidgetSettings saved successfully");
     }
 
     spacing: Style.marginM
