@@ -13,21 +13,30 @@ DraggableDesktopWidget {
   readonly property var now: Time.now
 
   // DateTime Colour
-  readonly property bool colourChoice: widgetData?.colourChoice
-  readonly property color dayColour: colourChoice ? Color.resolveColorKey(widgetData?.dayColourChoice) : widgetData?.dayColourPicker 
-  readonly property color dateColour: colourChoice ? Color.resolveColorKey(widgetData?.dateColourChoice) : widgetData?.dateColourPicker 
-  readonly property color timeColour: colourChoice ? Color.resolveColorKey(widgetData?.timeColourChoice) : widgetData?.timeColourPicker 
+  readonly property bool colourChoice: widgetData?.colourChoice ?? true
+
+    readonly property color dayColour: colourChoice
+      ? Color.resolveColorKey(widgetData?.dayColourChoice ?? "error")
+      : (widgetData?.dayColourPicker ?? "black")
+
+    readonly property color dateColour: colourChoice
+      ? Color.resolveColorKey(widgetData?.dateColourChoice ?? "secondary")
+      : (widgetData?.dateColourPicker ?? "black")
+
+    readonly property color timeColour: colourChoice
+      ? Color.resolveColorKey(widgetData?.timeColourChoice ?? "secondary")
+      : (widgetData?.timeColourPicker ?? "black")
 
   // Font
-  readonly property string customDayFont: widgetData?.customDayFont
-  readonly property string customDateFont: widgetData?.customDateFont
-  readonly property string customTimeFont: widgetData?.customTimeFont
+  readonly property string customDayFont: widgetData?.customDayFont ?? Style.fontFamily ?? root.customFont ?? ""
+  readonly property string customDateFont: widgetData?.customDateFont ?? Style.fontFamily ?? root.customFont ?? ""
+  readonly property string customTimeFont: widgetData?.customTimeFont ?? Style.fontFamily ?? root.customFont ?? ""
 
-  readonly property real dayFontSize: (widgetData?.dayFontSize !== undefined) ? widgetData?.dayFontSize : Style.fontSizeXXL
-  readonly property real dateFontSize: (widgetData?.dateFontSize !== undefined) ? widgetData?.dateFontSize : Style.fontSizeM
-  readonly property real timeFontSize: (widgetData?.timeFontSize !== undefined) ? widgetData?.timeFontSize : Style.fontSizeM
+  readonly property real dayFontSize: widgetData?.dayFontSize !== undefined ? widgetData?.dayFontSize : 1.0
+  readonly property real dateFontSize: widgetData?.dateFontSize !== undefined ? widgetData?.dateFontSize : 1.0
+  readonly property real timeFontSize: widgetData?.timeFontSize !== undefined ? widgetData?.timeFontSize : 1.0
 
-  readonly property real textOpacity: widgetData?.textOpacity
+  readonly property real textOpacity: widgetData?.textOpacity !== undefined ? widgetData?.textOpacity : 1.0
   readonly property real contentPadding: Math.round(Style.marginL * widgetScale)
 
   // Width = Max(FontWidth) + padding

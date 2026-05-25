@@ -15,21 +15,22 @@ ColumnLayout {
     property string pluginName: "Modern Clock"
 
     property bool valueColourChoice: widgetSettings?.data?.colourChoice ?? defaults.colourChoice
-        
-    property string valueCustomDateFont: widgetSettings?.data?.customDateFont ?? defaults.customDateFont
+    property real valueTextOpacity: widgetSettings?.data?.textOpacity ?? defaults.textOpacity
 
-    // Font
+    // Day
     property string valueCustomDayFont: widgetSettings?.data?.customDayFont ?? defaults.customDayFont
-    property string valueCustomTimeFont: widgetSettings?.data?.customTimeFont ?? defaults.customTimeFont
+    property string valueDayColourChoice: widgetSettings?.data?.dayColourChoice ?? defaults.dayColourChoice
+    property string valueDayColourPicker: widgetSettings?.data?.dayColourPicker ?? defaults.dayColourPicker
+    property real valueDayFontSize: widgetSettings?.data?.dayFontSize ?? 1.0
+
+    // Date
+    property string valueCustomDateFont: widgetSettings?.data?.customDateFont ?? defaults.customDateFont
     property string valueDateColourChoice: widgetSettings?.data?.dateColourChoice ?? defaults.dateColourChoice
     property string valueDateColourPicker: widgetSettings?.data?.dateColourPicker ?? defaults.dateColourPicker
     property real valueDateFontSize: widgetSettings?.data?.dateFontSize ?? 1.0
-    property string valueDayColourChoice: widgetSettings?.data?.dayColourChoice ?? defaults.dayColourChoice
 
-    // DateTime Colour
-    property string valueDayColourPicker: widgetSettings?.data?.dayColourPicker ?? defaults.dayColourPicker
-    property real valueDayFontSize: widgetSettings?.data?.dayFontSize ?? 1.0
-    property real valueTextOpacity: widgetSettings?.data?.textOpacity ?? defaults.textOpacity
+    // Time
+    property string valueCustomTimeFont: widgetSettings?.data?.customTimeFont ?? defaults.customTimeFont
     property string valueTimeColourChoice: widgetSettings?.data?.timeColourChoice ?? defaults.timeColourChoice
     property string valueTimeColourPicker: widgetSettings?.data?.timeColourPicker ?? defaults.timeColourPicker
     property real valueTimeFontSize: widgetSettings?.data?.timeFontSize ?? 1.0
@@ -140,7 +141,7 @@ ColumnLayout {
         }
         NColorChoice {
             currentKey: valueDayColourChoice
-            defaultValue: cfg.dayColourChoice
+            defaultValue: widgetSettings?.data?.dayColourChoice
             description: pluginApi?.tr("settings.font.day.colour.description")
             label: pluginApi?.tr("settings.font.day.colour.label")
             visible: valueColourChoice
@@ -172,12 +173,13 @@ ColumnLayout {
             spacing: Style.marginS
 
             NLabel {
-                label: I18n.tr("panels.bar.appearance-font-scale-label")
+                label: I18n.tr("panels.bar.appearance-font-scale-label") + ": " + valueDayFontSize.toFixed(1)
             }
             NValueSlider {
-                from: 1
+                from: 0.1
                 to: 10
                 value: valueDayFontSize
+                stepSize: 0.1
 
                 onMoved: function (value) {
                     valueDayFontSize = value;
@@ -220,7 +222,7 @@ ColumnLayout {
         }
         NColorChoice {
             currentKey: valueDateColourChoice
-            defaultValue: cfg.dateColourChoice
+            defaultValue: widgetSettings?.data?.dateColourChoice
             description: pluginApi?.tr("settings.font.day.colour.description")
             label: pluginApi?.tr("settings.font.day.colour.label")
             visible: valueColourChoice
@@ -252,12 +254,13 @@ ColumnLayout {
             spacing: Style.marginS
 
             NLabel {
-                label: I18n.tr("panels.bar.appearance-font-scale-label")
+                label: I18n.tr("panels.bar.appearance-font-scale-label") + ": " + valueDateFontSize.toFixed(1)
             }
             NValueSlider {
-                from: 1
+                from: 0.1
                 to: 10
                 value: valueDateFontSize
+                stepSize: 0.1
 
                 onMoved: function (value) {
                     valueDateFontSize = value;
@@ -300,7 +303,7 @@ ColumnLayout {
         }
         NColorChoice {
             currentKey: valueTimeColourChoice
-            defaultValue: cfg.timeColourChoice
+            defaultValue: widgetSettings?.data?.timeColourChoice
             description: pluginApi?.tr("settings.font.day.colour.description")
             label: pluginApi?.tr("settings.font.day.colour.label")
             visible: valueColourChoice
@@ -332,12 +335,13 @@ ColumnLayout {
             spacing: Style.marginS
 
             NLabel {
-                label: I18n.tr("panels.bar.appearance-font-scale-label")
+                label: I18n.tr("panels.bar.appearance-font-scale-label") + ": " + valueTimeFontSize.toFixed(1)
             }
             NValueSlider {
-                from: 1
+                from: 0.1
                 to: 10
                 value: valueTimeFontSize
+                stepSize: 0.1
 
                 onMoved: function (value) {
                     valueTimeFontSize = value;
