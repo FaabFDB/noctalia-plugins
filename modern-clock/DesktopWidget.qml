@@ -16,7 +16,7 @@ DraggableDesktopWidget {
   readonly property bool colourChoice: widgetData?.colourChoice ?? true
 
     readonly property color dayColour: colourChoice
-      ? Color.resolveColorKey(widgetData?.dayColourChoice ?? "error")
+      ? Color.resolveColorKey(widgetData?.dayColourChoice ?? "secondary")
       : (widgetData?.dayColourPicker ?? "black")
 
     readonly property color dateColour: colourChoice
@@ -28,15 +28,15 @@ DraggableDesktopWidget {
       : (widgetData?.timeColourPicker ?? "black")
 
   // Font
-  readonly property string customDayFont: widgetData?.customDayFont ?? Style.fontFamily ?? root.customFont ?? ""
-  readonly property string customDateFont: widgetData?.customDateFont ?? Style.fontFamily ?? root.customFont ?? ""
-  readonly property string customTimeFont: widgetData?.customTimeFont ?? Style.fontFamily ?? root.customFont ?? ""
+  readonly property string customDayFont: widgetData?.customDayFont ?? root.customFont ?? Style.fontFamily
+  readonly property string customDateFont: widgetData?.customDateFont ?? root.customFont ?? Style.fontFamily
+  readonly property string customTimeFont: widgetData?.customTimeFont ?? root.customFont ?? Style.fontFamily
+        ?? root.customFont
+  readonly property real dayFontSize: widgetData?.dayFontSize ?? 1.0
+  readonly property real dateFontSize: widgetData?.dateFontSize ?? 1.0
+  readonly property real timeFontSize: widgetData?.timeFontSize ?? 1.0
 
-  readonly property real dayFontSize: widgetData?.dayFontSize !== undefined ? widgetData?.dayFontSize : 1.0
-  readonly property real dateFontSize: widgetData?.dateFontSize !== undefined ? widgetData?.dateFontSize : 1.0
-  readonly property real timeFontSize: widgetData?.timeFontSize !== undefined ? widgetData?.timeFontSize : 1.0
-
-  readonly property real textOpacity: widgetData?.textOpacity !== undefined ? widgetData?.textOpacity : 1.0
+  readonly property real textOpacity: widgetData?.textOpacity ?? 1.0
   readonly property real contentPadding: Math.round(Style.marginL * widgetScale)
 
   // Width = Max(FontWidth) + padding
